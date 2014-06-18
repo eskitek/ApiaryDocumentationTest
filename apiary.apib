@@ -1,108 +1,250 @@
-HOST: http://my.huddle.net/
+FORMAT: 1A
 
---- Huddle API Documentation ---
----
-Welcome to the our Huddle API documentation.
----
+# Huddle API
+You can put some description here.
 
---
-Folder Resources
-The following is a section of resources related to folders. A folder is used to organise, group, and protect documents that are stored in Huddle.
---
-Retrieve a folder.
-GET /files/folders/{folderId}
-> Accept: application/vnd.huddle.data+xml
-> Authorization: OAuth2 frootymcnooty/vonbootycherooty
-> If-Modified-Since: Sat, 29 Oct 2012 19:43:31 GMT
-< 200
-< Content-Type: application/vnd.huddle.data+xml
-< Last-Modified: Tue, 1 Feb 2012 13:18:42 GMT
-<folder xmlns="http://schema.huddle.net/2011/02/" title="An example folder" displayName="An example folder">
-  <link rel="self" href="/files/folders/988665" />
-  <link rel="parent" href="..." />
-  <link rel="delete" href="..." />
-  <link rel="bulk-delete" href="..." />
-  <link rel="bulk-move" href="..." />
-  <link rel="edit" href="..." />  
-  <link rel="create-folder" href="..." />
-  <link rel="create-document" href="..." />
-  <link rel="share" href="..." />
-  <link rel="copy" href="..." />
-  <actor name="Ian Cooper" email="ian.cooper@example.com" rel="owner">
-    <link rel="self" href="..." />
-    ... other actor elements ...
-  </actor>
-  <folders>
-    <folder title="Project ABC" description="Top secret">
-      <link rel="self" href="..." />
-      ... other folder elements ...
-    </folder>
-  </folders>
-  <documents>
-    <document title="Felix and Herbert" description="My pets">
-      <link rel="self" href="..." />  
-      ... other document elements ...
-    </document>
-  </documents>
-  <created>2011-10-10T09:02:17Z</created>
-  <updated>2011-10-10T09:03:17Z</updated>
-</folder>
+# Group Folders
 
-Delete a folder
-DELETE /files/folders/{folderId}
-> Authorization: OAuth2 frootymcnooty/vonbootycherooty
-< 200
-< Link: </folders/123>;rel="parent"
+## Folder [/files/folders/{folderId}]
+A folder is used to organise, group, and protect documents that are stored in Huddle.
 
++ Parameters
 
--- 
-Document Resources
-The following is a section of resources related to documents. Documents represent files stored within Huddle, such as spreadsheets or images. Documents also have metadata for version history and commenting.
---
-Retrieve a document
-GET /files/documents/{documentId}
-> Accept: application/vnd.huddle.data+xml
-> Authorization: OAuth2 frootymcnooty/vonbootycherooty
-< 200
-< Content-Type: application/vnd.huddle.data+xml
-< Last-Modified: Thu, 04 Dec 2012 12:45:26 GMT
-<document xmlns="http://schema.huddle.net/2011/02/" title="TPS report May 2010" description="relentlessly mundane and enervating.">
-  <link rel="self" href="..." />
-  <link rel="parent" href="..." title="..."/>
-  <link rel="edit" href="..." />
-  <link rel="move" href="..." />
-  <link rel="delete" href="..." />
-  <link rel="content" href="..." title="..." type="..." />
-  <link rel="thumb" href="..." />
-  <link rel="lock" href="..." />
-  <link rel="version-history" href="..." />
-  <link rel="create-version" href="..." />
-  <link rel="comments" href="..." count="2" />
-  <link rel="approvals" href="..." />
-  <link rel="permissions" href="..." />
-  <link rel="share" href="..." />
-  <link rel="preview" href="..." />
-  <link rel="audit-entries" href="..." />
-  <link rel="alternate" href="..." />
-  <link rel="copy" href="..." />
-  <actor name="Peter Gibson" email="peter.gibson@example.com" rel="owner">
-    <link rel="self" href="..." />
-    <link rel="avatar" href="..." type="image/jpg" />
-    <link rel="alternate" href="..." type="text/html" />
-  </actor>
-  <actor name="Barry Potter" email="barry.potter@example.com" rel="updated-by">
-    <link rel="self" href="..." />
-    <link rel="avatar" href="..." type="image/jpg" />
-    <link rel="alternate" href="..." type="text/html" />
-  </actor>
-  <size>19475</size>
-  <version>98</version>
-  <created>2007-10-10T09:02:17Z</created>
-  <updated>2011-10-10T09:02:17Z</updated>
-  <processingStatus>Complete</processingStatus>
-  <views>9</views>
-  <workspace title="My workspace">
-    <link rel="self" href="..." />
-  </workspace>
-</document>
+    + folderId (number, `1`) ... A unique identifier for the folder.
 
+### Retrieve a Folder [GET]
+
++ Request (application/vnd.huddle.data+xml)
+
+    + Headers
+    
+            If-Modified-Since: Sat, 29 Oct 2012 19:43:31 GMT
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+    + Headers
+    
+            Last-Modified: Wed, 18 Jun 2014 14:09:40 GMT
+            
+    + Body
+    
+            { 
+                "owner": { 
+                    "name": "Bob Smith",
+                    "email": "bob.smith@acme.com",
+                    "rel": "owner",
+                    "links": [ { 
+                        "rel": "self",
+                        "href": "https://api.huddle.net/users/45"
+                    }, { 
+                        "rel": "avatar",
+                        "href": "https://api.huddle.net/files/users/45/avatar?h=abc"
+                    }, { 
+                        "rel": "alternate",
+                        "href": "https://my.huddle.net/user/bsmith",
+                        "type": "text/html"
+                    } ]
+                },
+                "folders": [ ],
+                "documents": [ ],
+                "created": "Wed, 18 Jun 2014 14:26:16 GMT",
+                "permissionsSummary": { 
+                    "owner": { 
+                        "name": "Bob Smith",
+                        "email": "bob.smith@acme.com",
+                        "rel": "owner",
+                        "links": [ { 
+                            "rel": "self",
+                            "href": "https://api.huddle.net/users/45"
+                        }, { 
+                            "rel": "avatar",
+                            "href": "https://api.huddle.net/files/users/45/avatar?h=abc"
+                        }, { 
+                            "rel": "alternate",
+                            "href": "https://my.huddle.net/user/bsmith",
+                            "type": "text/html"
+                        } ]
+                    },
+                    "actorPermissions": { 
+                        "actor": { 
+                            "name": "Bob Smith",
+                            "email": "bob.smith@acme.com",
+                            "rel": "currentUser",
+                            "links": [ { 
+                                "rel": "self",
+                                "href": "https://api.huddle.net/users/45"
+                            }, { 
+                                "rel": "avatar",
+                                "href": "https://api.huddle.net/files/users/45/avatar?h=abc"
+                            }, { 
+                                "rel": "alternate",
+                                "href": "https://my.huddle.net/user/bsmith",
+                                "type": "text/html"
+                            } ]
+                        },
+                        "permissions": [ { 
+                            "type": "Read"
+                        }, { 
+                            "type": "Edit"
+                        } ]
+                    },
+                    "links": [ { 
+                        "rel": "self",
+                        "href": "https://api.huddle.net/files/folders/96/permissions"
+                    } ],
+                    "teams": [ { 
+                        "links": [ { 
+                            "rel": "self",
+                            "href": "https://api.huddle.net/teams/-1"
+                        } ],
+                        "members": [ ],
+                        "title": "Default Permissions Group",
+                        "type": "default",
+                        "permissions": [ { 
+                            "type": "Read"
+                        }, { 
+                            "type": "Edit"
+                        } ],
+                        "parentPermissions": [ { 
+                            "type": "Read"
+                        }, { 
+                            "type": "Edit"
+                        } ]
+                    }, { 
+                        "links": [ { 
+                            "rel": "self",
+                            "href": "https://api.huddle.net/teams/13"
+                        } ],
+                        "members": [ { 
+                            "name": "Bob Smith",
+                            "email": "bob.smith@acme.com",
+                            "rel": "members",
+                            "links": [ { 
+                                "rel": "self",
+                                "href": "https://api.huddle.net/users/45"
+                            }, { 
+                                "rel": "avatar",
+                                "href": "https://api.huddle.net/files/users/45/avatar?h=abc"
+                            }, { 
+                                "rel": "alternate",
+                                "href": "https://my.huddle.net/user/bsmith",
+                                "type": "text/html"
+                            } ]
+                        } ],
+                        "title": "Team A",
+                        "type": "members",
+                        "permissions": [ { 
+                            "type": "Read"
+                        }, { 
+                            "type": "Edit"
+                        } ],
+                        "parentPermissions": [ { 
+                            "type": "Read"
+                        }, { 
+                            "type": "Edit"
+                        } ]
+                    }, { 
+                        "links": [ { 
+                            "rel": "self",
+                            "href": "https://api.huddle.net/workspaces/75/managers"
+                        } ],
+                        "members": [ { 
+                            "name": "Bob Smith",
+                            "email": "bob.smith@acme.com",
+                            "rel": "manager",
+                            "links": [ { 
+                                "rel": "self",
+                                "href": "https://api.huddle.net/users/45"
+                            }, { 
+                                "rel": "avatar",
+                                "href": "https://api.huddle.net/files/users/45/avatar?h=abc"
+                            }, { 
+                                "rel": "alternate",
+                                "href": "https://my.huddle.net/user/bsmith",
+                                "type": "text/html"
+                            } ]
+                        } ],
+                        "title": "Workspace Managers",
+                        "type": "managers",
+                        "permissions": [ { 
+                            "type": "Read"
+                        }, { 
+                            "type": "Edit"
+                        } ],
+                        "parentPermissions": [ { 
+                            "type": "Read"
+                        }, { 
+                            "type": "Edit"
+                        } ]
+                    } ],
+                    "restricted": true
+                },
+                "ancestry": [ { 
+                    "links": [ { 
+                        "rel": "self",
+                        "href": "https://api.huddle.net/files/folders/852"
+                    } ],
+                    "title": "Videos"
+                } ],
+                "links": [ { 
+                    "rel": "create-document",
+                    "href": "https://api.huddle.net/files/folders/96/documents"
+                }, { 
+                    "rel": "create-folder",
+                    "href": "https://api.huddle.net/files/folders/96"
+                }, { 
+                    "rel": "delete",
+                    "href": "https://api.huddle.net/files/folders/96"
+                }, { 
+                    "rel": "self",
+                    "href": "https://api.huddle.net/files/folders/96"
+                }, { 
+                    "rel": "permissions",
+                    "href": "https://api.huddle.net/files/folders/96/permissions"
+                }, { 
+                    "rel": "workspace-summary",
+                    "href": "https://api.huddle.net/workspaces/75"
+                }, { 
+                    "rel": "share",
+                    "href": "https://api.huddle.net/files/folders/96/share"
+                }, { 
+                    "rel": "bulk-delete",
+                    "href": "https://api.huddle.net/files/bulkprocess/delete"
+                }, { 
+                    "rel": "bulk-move",
+                    "href": "https://api.huddle.net/files/bulkprocess/move"
+                }, { 
+                    "rel": "bulk-download",
+                    "href": "https://api.huddle.net/files/bulkprocess/download"
+                }, { 
+                    "rel": "document-library-settings",
+                    "href": "https://api.huddle.net/files/workspaces/75/folders/root/settings"
+                }, { 
+                    "rel": "edit",
+                    "href": "https://api.huddle.net/files/folders/96/edit"
+                }, { 
+                    "rel": "editPermissions",
+                    "href": "https://api.huddle.net/files/folders/96/permissions"
+                }, { 
+                    "rel": "move",
+                    "href": "https://api.huddle.net/files/folders/96/edit"
+                }, { 
+                    "rel": "copy",
+                    "href": "https://api.huddle.net/files/folders/96/copy"
+                }, { 
+                    "rel": "parent",
+                    "href": "https://api.huddle.net/files/folders/852"
+                } ],
+                "title": "Projects",
+                "displayName": "Projects",
+                "description": "Store project-related documents here",
+                "updated": "Wed, 18 Jun 2014 14:26:16 GMT"
+            }
+
+### Delete a folder [DELETE]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+    + Headers
+    
+            Link: </files/folders/{folderId}>;rel="parent"
