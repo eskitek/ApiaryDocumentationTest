@@ -7,21 +7,69 @@ You can put some description here.
 
 ## Company  [/people/companies/{companyId}]
 
+### Retrieve a Company [GET]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Company List  [/people/companies]
+
+### Retrieve all Companies [GET]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
 ## Company Manager [/people/companies/{companyId}/managers/{memberId}]
 
-## Company Managers Collection [/people/companies/{companyId}/managers]
+### Demote a Member from Manager [DELETE]
 
-## Members
++ Response 204 (application/vnd.huddle.data+xml)
 
-# Group Discussions
+## Company Manager List [/people/companies/{companyId}/managers]
 
-## Discussion Post
+### Promote a Member to Manager [POST]
+
++ Response 201 (application/vnd.huddle.data+xml)
+
+## Company Member List [/people/companies/{companyId}/members]
+
+### Retrieve a list of Members for a Company [GET]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Company Member [/people/companies/{companyId}/members/{memberId}]
+
+### Delete a Company Member [DELETE]
+
++ Response 204 (application/vnd.huddle.data+xml)
 
 # Group Documents
 
-## Document
+## Document [/files/documents/{documentId}]
 
-## Approval
+### Retrieve a Document [GET]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Document Content [/files/documents/{documentId}/content]
+
+### Download a Document's Content [GET]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Document Edit [/files/documents/{documentId}/edit]
+
+Used to move a document or to update Document details
+
+### Edit a Document [POST]
+
++ Response 202 (application/vnd.huddle.data+xml)
+
+## Document Version [/files/documents/{documentId}/version]
+
+### Create a Document Version [POST]
+
++ Response 201 (application/vnd.huddle.data+xml)
+
+## Approval [/files/documents/{documentId}/approvals]
 
 ## Lock
 
