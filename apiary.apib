@@ -3,17 +3,21 @@ FORMAT: 1A
 # Huddle API
 You can put some description here.
 
-# Group Company
+# Group Companies
 
-## Company
+## Company  [/people/companies/{companyId}]
 
-## Company Manager
+## Company Manager [/people/companies/{companyId}/managers/{memberId}]
 
-# Group Discussion
+## Company Managers Collection [/people/companies/{companyId}/managers]
+
+## Members
+
+# Group Discussions
 
 ## Discussion Post
 
-# Group Document
+# Group Documents
 
 ## Document
 
@@ -21,7 +25,7 @@ You can put some description here.
 
 ## Lock
 
-# Group Folder
+# Group Folders
 
 ## Folder [/files/folders/{folderId}]
 A folder is used to organise, group, and protect documents that are stored in Huddle.
@@ -261,7 +265,9 @@ A folder is used to organise, group, and protect documents that are stored in Hu
 
 ### Delete a folder [DELETE]
 
-+ Response 200 (application/vnd.huddle.data+xml)
++ Request (application/vnd.huddle.data+json)
+
++ Response 200 (application/vnd.huddle.data+json)
 
     + Headers
     
@@ -269,11 +275,17 @@ A folder is used to organise, group, and protect documents that are stored in Hu
             
 ## Document Library Settings  [/files/workspaces/{workspaceId}/folders/root/settings]
       
-# Group Notification
+# Group Notifications
 
-## Notifications Collection
+## User Notifications [/notifications/user/{userId}/received]
 
-# Group Workspace
+### Retrieve notifications for a user [GET]
+
++ Request (application/atom+xml)
+
++ Response 200 (application/atom+xml)
+
+# Group Workspaces
 
 ## Workspace
 
