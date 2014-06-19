@@ -57,9 +57,7 @@ You can put some description here.
 
 ## Document Edit [/files/documents/{documentId}/edit]
 
-Used to move a document or to update Document details
-
-### Edit a Document [POST]
+### Update or Move a Document [POST]
 
 + Response 202 (application/vnd.huddle.data+xml)
 
@@ -310,6 +308,8 @@ A folder is used to organise, group, and protect documents that are stored in Hu
                 "description": "Store project-related documents here",
                 "updated": "Wed, 18 Jun 2014 14:26:16 GMT"
             }
+            
++ Response 400 (application/vnd.huddle.data+xml)
 
 ### Delete a folder [DELETE]
 
