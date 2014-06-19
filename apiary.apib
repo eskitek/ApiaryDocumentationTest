@@ -89,7 +89,7 @@ Hello, this is Huddle's API.
 
 + Response 201 (application/vnd.huddle.data+xml)
 
-## Approval List [/files/documents/{documentId}/approvals]
+## Approval [/files/documents/{documentId}/approvals]
 
 ### Retrieve a Document Approval Approval List for a Document [GET]
 
@@ -118,6 +118,30 @@ Hello, this is Huddle's API.
 ### Update a Document Approval Assignment Status [POST]
 
 + Response 200 (application/vnd.huddle.data+xml)
+
+## Change List [/files/documents/{documentId}/audittrail]
+
+### Retrieve the Change List for a Document [GET]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Printed Change [/files/documents/{documentId}/audittrail/printed]
+
+### Record a Printed Change [POST]
+
++ Response 201 (application/vnd.huddle.data+xml)
+
+## Opened Change [/files/documents/{documentId}/audittrail/opened]
+
+### Record an Opened Change [POST]
+
++ Response 201 (application/vnd.huddle.data+xml)
+
+## Viewed Change [/files/documents/{documentId}/audittrail/viewed]
+
+### Record a Viewed Change [POST]
+
++ Response 201 (application/vnd.huddle.data+xml)
 
 ## Lock [/files/documents/{documentId}/lock]
 
