@@ -1,7 +1,7 @@
 FORMAT: 1A
 
 # Huddle API
-You can put some description here.
+Hello, this is Huddle's API.
 
 # Group Companies
 
@@ -49,6 +49,10 @@ You can put some description here.
 
 + Response 200 (application/vnd.huddle.data+xml)
 
+### Delete a Document [DELETE]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
 ## Document Content [/files/documents/{documentId}/content]
 
 ### Download a Document's Content [GET]
@@ -61,15 +65,61 @@ You can put some description here.
 
 + Response 202 (application/vnd.huddle.data+xml)
 
-## Document Version [/files/documents/{documentId}/version]
+## Document Version List [/files/documents/{documentId}/version]
 
 ### Create a Document Version [POST]
 
 + Response 201 (application/vnd.huddle.data+xml)
 
-## Approval [/files/documents/{documentId}/approvals]
+## Document Version Thumbnail Content [/files/documents/{documentId}/versions/{versionId}/thumbnails/medium/content]
 
-## Lock
+### Download a Document Version Thumbnail's Content [POST]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Document Restore [/files/documents/{documentId}/restore]
+
+### Restore a Document [PUT]
+
++ Response 204 (application/vnd.huddle.data+xml)
+
+## Document Copy [/files/documents/{documentId}/copy]
+
+### Create a Document Copy [POST]
+
++ Response 201 (application/vnd.huddle.data+xml)
+
+## Document Approval List [/files/documents/{documentId}/approvals]
+
+### Retrieve a Document Approval Approval List for a Document [GET]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Document Approval Due Date Update [/files/documents/{documentId}/approvals/updateduedate]
+
+### Update a Document Approval's Details [POST]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Document Approval Assignee Update [/files/documents/{documentId}/approvals/updateassignees]
+
+### Update a Document Approval's Assignee List [POST]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Document Approval Request [/files/documents/{documentId}/approvals/request]
+
+### Request a Document Approval [POST]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Document Approval Assignment [/files/documents/{documentId}/approvals/assignment]
+
+### Update a Document Approval Assignment Status [POST]
+
++ Response 200 (application/vnd.huddle.data+xml)
+
+## Lock [/files/documents/{documentId}/lock]
 
 # Group Folders
 
